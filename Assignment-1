@@ -1,0 +1,118 @@
+DS Assignment 1                                   
+B24CE1073                                                                                                   Tanish Moro         
+
+Program 1:
+/*Write a program to track rainfall data for 3 cities over 4 months. Using a 2D array, we can store the data, calculate the average rainfall for each city, and display the rainfall data in a tabular format.*/
+ 
+ #include<stdio.h>
+ #include<iostream>
+ using namespace std;
+ int main()
+ {
+	 float rainfall[3][4];
+	 float total[3], avg[3];
+	 cout<<"Input Rainfall data for 3 cities: "<<endl;
+	 for (int c=0; c<3; c++)
+	 {
+		 cout<<"For City "<<c+1<<endl;
+		 for (int m=0;m<4;m++)
+		 {
+			 cout<<"Enter data for month "<<m+1<<endl;
+			 cin>>rainfall[c][m];
+		 }
+     }
+     for (int i=0;i<3;i++)
+     {
+		 total[i]=rainfall[i][0]+rainfall[i][1]+rainfall[i][2]+rainfall[i][3];
+		 avg[i]=(total[i])/4;
+	 }
+	 cout<<"***Rainfall Tracking***"<<endl;
+	 cout<<"-------------------------------------------------------------------------------------"<<endl;
+	 cout<<"Sr.No.\tCity\tMonth1\tMonth2\tMonth3\tMonth4\tAverage "<<endl;     
+	      for (int j=0;j<3;j++)
+     {
+		 cout<<"-------------------------------------------------------------------------------------"<<endl;;
+		 cout<<j+1<<" \t City"<<j+1<<" \t "<<rainfall[j][0]<<" \t "<<rainfall[j][1]<<" \t "<<rainfall[j][2]<<" \t "<<rainfall[j][3]<<" \t "<<avg[j]<<endl;
+	 }  
+     
+     return 0;
+ }
+
+
+
+
+
+
+
+Program 2:
+/* Write a program for Tracking daily temperatures of 3 cities for a week . The program calculates the average temperature for each day and for the week. */
+
+#include<stdio.h>
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    float temp[3][7];
+    float totalCity[3], avgCity[3];
+    float totalDay[7], avgDay[7];
+
+    cout << "Input Temperature data for 3 cities for 7 days: " << endl;
+
+    for (int c = 0; c < 3; c++)
+    {
+        cout << "For City " << c + 1 << endl;
+        for (int d = 0; d < 7; d++)
+        {
+            cout << "Enter temperature for day " << d + 1 << ": ";
+            cin >> temp[c][d];
+        }
+    }
+
+    for (int i = 0; i < 3; i++)
+    {
+        totalCity[i] = 0;
+        for (int j = 0; j < 7; j++)
+        {
+            totalCity[i] += temp[i][j];
+        }
+        avgCity[i] = totalCity[i] / 7;
+    }
+
+    for (int d = 0; d < 7; d++)
+    {
+        totalDay[d] = 0;
+        for (int c = 0; c < 3; c++)
+        {
+            totalDay[d] += temp[c][d];
+        }
+        avgDay[d] = totalDay[d] / 3;
+    }
+
+    cout << "\n***Temperature Tracking***" << endl;
+    cout << "---------------------------------------------------------------------------------------------------" << endl;
+    cout << "Sr.No.\tCity\tDay1\tDay2\tDay3\tDay4\tDay5\tDay6\tDay7\tAverage" << endl;
+
+    for (int j = 0; j < 3; j++)
+    {
+        cout << "---------------------------------------------------------------------------------------------------" << endl;
+        cout << j + 1 << "\tCity" << j + 1 << "\t";
+        for (int d = 0; d < 7; d++)
+        {
+            cout << temp[j][d] << "\t";
+        }
+        cout << avgCity[j] << endl;
+    }
+
+    cout << "---------------------------------------------------------------------------------------------------" << endl;
+    cout << "Avg/Day\t\t";
+    for (int d = 0; d < 7; d++)
+    {
+        cout << avgDay[d] << "\t";
+    }
+    cout << " " << endl;
+
+    return 0;
+}
+
+
