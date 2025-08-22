@@ -1,0 +1,69 @@
+/*Game Development:
+write a game development program that implements the Bubble Sort algorithm. 
+The program will simulate a simple game where the player can input a set of numbers, 
+and the numbers will be sorted using Bubble Sort to simulate a "level-up" scenario 
+where the player's scores are sorted in ascending order.*/
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main()
+{
+	int n,pass;
+	cout<<"Enter number of rounds: ";
+	cin>>n;
+	int p1[n],p2[n];
+	cout<<"Enter scores of player 1:";
+	for (int x=0;x<n;x++)
+	{
+		cin>>p1[x];
+	}
+	cout<<"Enter scores of player 2:";
+	for (int y=0;y<n;y++)
+	{
+		cin>>p2[y];
+	}
+	for (pass=0;pass<n;pass++)
+	{
+		for (int i=0;i<n-pass-1;i++)
+		{
+			if (p1[i]<p1[i+1])
+			{
+				int temp;
+				temp=p1[i];
+				p1[i]=p1[i+1];
+				p1[i+1]=temp;
+			}
+			if (p2[i]<p2[i+1])
+			{
+				int temp;
+				temp=p2[i];
+				p2[i]=p2[i+1];
+				p2[i+1]=temp;
+			}
+		}
+	}
+	cout<<"\n Scores of Player 1 are: ";
+	for (int a=0;a<n;a++)
+	{
+		cout<<p1[a]<<",";
+	}
+	cout<<"\n Scores of Player 2 are: ";
+	for (int a=0;a<n;a++)
+	{
+		cout<<p2[a]<<",";
+	}
+	if (p1[0]==p2[0])
+	{
+		cout<<"\n Game is a Tie!"<<endl;
+	}
+	else if (p1[0]>p2[0])
+	{
+		cout<<"\n Player 1 is the winner!"<<endl;
+	}
+	else
+	{
+		cout<<"\n Player 2 is the winner!"<<endl;
+	}
+	return 0;
+}
