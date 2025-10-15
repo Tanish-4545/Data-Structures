@@ -1,0 +1,218 @@
+Coffee Shop Line (Simple Queue): Arrival: Customers arrive at the coffee shop and stand in line. 
+Order Processing: The first customer in line gets their order taken, and the barista starts making the coffee.
+Serving: Once the first customer is served, they leave the queue, and the next customer in line moves forward to be served. Write a program to implement a simple queue
+
+#include<iostream>
+using namespace std;
+class coffee
+{
+	int size=5;
+	int token[5];
+	int r=-1,f=-1;
+public:
+	void enqueue(int t);
+	int dequeue();
+	int isEmpty();
+	int isFull();
+	void display();
+};
+int coffee::isFull()
+{
+	if (r==size-1)
+	{
+		return 1;
+	}
+	return 0;
+}
+int coffee::isEmpty()
+{
+	if (f==-1 || f>r)
+	{
+		return 1;
+	}
+	return 0;
+}
+void coffee::enqueue(int t)
+{
+	if (isFull()==1)
+	{
+		cout<<"Queue is full... Inconvenience regretted!"<<endl;
+	}
+	else
+	{
+		if (f==-1)
+		{
+			f=0;
+		}
+		r++;
+		token[r]=t;
+	}
+}
+int coffee::dequeue()
+{
+	if (isEmpty()==1)
+	{
+		cout<<"All orders are processed!"<<endl;
+		return -1;
+	}
+	else
+	{
+		int x=token[f];
+		f++;
+		if (f>r)
+		{
+			f=r=-1;
+		}
+		return x;
+	}
+}
+void coffee::display()
+{
+	if (isEmpty()==1)
+	{
+		cout<<"No pending orders!"<<endl;
+	}
+	else
+	{
+		cout<<"Current tokens in queue: ";
+		for (int i=f; i<=r; i++)
+		{
+			cout<<token[i]<<" ";
+		}
+		cout<<endl;
+	}
+}
+int main()
+{
+	coffee obj;
+	obj.enqueue(10);
+	obj.enqueue(11);
+	obj.enqueue(12);
+	obj.display();
+	obj.dequeue();
+	obj.display();
+	obj.dequeue();
+	obj.display();
+	obj.dequeue();
+	obj.display();
+	return 0;
+}
+
+
+
+
+Printer Spooler (Circular Queue):
+In a multi-user environment, printers often use a circular queue to manage print jobs. Each print job is added to the queue, and the printer processes them in the order they arrive. Once a print job is completed, it moves out of the queue, and the next job is processed, efficiently managing the flow of print tasks. Implement the Printer Spooler system using a circular queue without using built-in queues.
+
+#include<iostream>
+using namespace std;
+class printer
+{
+	int N=5;
+	int job[5];
+	int f=-1,r=-1;
+public:
+	void enqueue(int j);
+	int dequeue();
+	int isEmpty();
+	int isFull();
+	void display();
+};
+int printer::isFull()
+{
+	if ((r+1)%N==f)
+	{
+		return 1;
+	}
+	return 0;
+}
+int printer::isEmpty()
+{
+	if (f==-1 && r==-1)
+	{
+		return 1;
+	}
+	return 0;
+}
+void printer::enqueue(int j)
+{
+	if (isFull()==1)
+	{
+		cout<<"Print queue is full... Please wait!"<<endl;
+	}
+	else if (isEmpty()==1)
+	{
+		f=r=0;
+	}
+	else
+	{
+		r=(r+1)%N;
+	}
+		job[r]=j;
+		cout<<"Print job "<<j<<" added to queue"<<endl;
+}
+int printer::dequeue()
+{
+	int x=0;
+	if (isEmpty()==1)
+	{
+		cout<<"No pending print jobs!"<<endl;
+		return -1;
+	}
+	else if (f==r)
+	{
+		x=job[f];
+		cout<<"Processing print job "<<x<<endl;
+		f=r=-1;
+		return x;
+	}
+	else
+	{
+		x=job[f];
+		f=(f+1)%N;
+		return x;
+	}
+}
+void printer::display()
+{
+	if (isEmpty()==1)
+	{
+		cout<<"No jobs in the printer queue!"<<endl;
+	}
+	else
+	{
+		cout<<"Current print jobs: ";
+		int i=f;
+		while (true)
+		{
+			cout<<job[i]<<" ";
+			if (i==r)
+			{
+				break;
+			}
+			i=(i+1)%N;
+		}
+		cout<<endl;
+	}
+}
+int main()
+{
+	printer p;
+	p.enqueue(101);
+	p.enqueue(102);
+	p.enqueue(103);
+	p.display();
+	p.dequeue();
+	p.display();
+	p.enqueue(104);
+	p.enqueue(105);
+	p.enqueue(106);
+	p.display();
+	p.dequeue();
+	p.display();
+	return 0;
+}
+
+Output:
+
+
